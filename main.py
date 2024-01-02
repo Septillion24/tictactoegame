@@ -6,12 +6,20 @@ class Main:
         self.gameBoard = Board()
 
     def run(self):
-        self.doGame()
+        end = False
+        while(not end):
+            end = self.doGame()
+            
+            
+        
     
     
     def doGame(self):
-        self.gameBoard.setRowColumn(1,1,1)
         self.displayBoard(self.gameBoard)
+        
+        if(self.gameBoard.checkWinningCondition()):
+            return True
+        
         
         
     def displayBoard(self, board:Board) -> None:
