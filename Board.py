@@ -60,9 +60,23 @@ class Board:
                 return winner
         return winner
         
+    def checkDiagonals(self) -> int:
+        winner = -1
+        values = []
+        for x in range(3):
+            values.append(self.getRowColumn(x,x))
+        winner = self.checkValuesForWin(values)
+        if(winner != -1):
+            return winner
+        
+        values = []
+        for x in range(3):
+            values.append(self.getRowColumn(x,2-x))
+        winner = self.checkValuesForWin(values)
+        return winner
 
     def checkValuesForWin(self, values) -> int:
-        win = not 1 in values and 0 in values and not None in values
+        win = not (1 in values and 0 in values) and not None in values
         if win and 1 in values:
             winner = 1
         else:
