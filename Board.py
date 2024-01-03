@@ -20,30 +20,48 @@ class Board:
         return self.rows[y][x]
         
     def checkWinningCondition(self) -> bool:
-        return False
+        if self.getWinningPlayer() == -1:
+            return False
+        else:
+            return True
     
     def getWinningPlayer(self) -> int:
         # 0 is o, 1 is x
-        # -1 means no winner
-
-        if not self.checkWinningCondition():
-            return -1
-        else:
-            winner = self.checkRows()
-            if winner != -1:
-                return winner
-            winner = self.checkColumns()
-            if winner != -1:
-                return winner
-            winner = self.checkDiagonals()
+        # -1 means no winner yet
+        # -2 means tie
+        
+        winner = self.checkRows()
+        if winner != -1:
+            print("Winning condition found through rows.")
+            print("Winning table:" + self.rows.__str__())
             return winner
+        winner = self.checkColumns()
+        if winner != -1:
+            print("Winning condition found through columns")
+            return winner
+        winner = self.checkDiagonals()
+        if winner != -1:
+            print("Winning condition found through diagonals")
+            return winner
+        if self.checkTie():
+            return -2
+    
+        return winner
+    
+    
+    def checkTie(self):
+        for x in range(3):
+            for y in range(3):
+                if self.getRowColumn(x,y) == -1:
+                    return False
+        return True
 
     def checkRows(self) -> int:
         winner = -1
-        for row_num, row in enumerate(self.rows):
+        for row in self.rows:
             values = []
-            for col_num, value in enumerate(row):
-                values.append(self.getRowColumn(col_num, row_num))
+            for value in row:
+                values.append(value)
             winner = self.checkValuesForWin(values)
             if(winner != -1):
                 return winner
@@ -51,10 +69,10 @@ class Board:
     
     def checkColumns(self) -> int:
         winner = -1
-        for i in range(3):
+        for column in range(3):
             values = []
-            for row_num, row in enumerate(self.rows):
-                values.append(self.getRowColumn(row_num, i))
+            for row in range(3):
+                values.append(self.getRowColumn(row, column))
             winner = self.checkValuesForWin(values)
             if(winner != -1):
                 return winner
@@ -74,18 +92,32 @@ class Board:
             values.append(self.getRowColumn(x,2-x))
         winner = self.checkValuesForWin(values)
         return winner
+    
 
-    def checkValuesForWin(self, values) -> int:
-        winner = -1
-        win = not (1 in values and 0 in values) and not None in values
-        if win and 1 in values:
-            winner = 1
-        if win and 0 in values:
-            winner = 0
-        if not win:
-            winner = -1
-        return winner
-                    
+    def checkValuesForWin(self, values):
+        if len(set(values)) == 1:
+            if values[0] == -1:
+                return -1
+            else:
+                return values[0]
+        else:
+            return -1
+
+    def getBoardTextDisplay(self) -> str:
+        text = "\033[4m  | 0 | 1 | 2 |\033[0m\n"
+        rowNumber = -1
+        for row in self.rows:
+            rowNumber+=1
+            text += rowNumber.__str__() + " | "
+            for value in row:
+                if value == 1:
+                    text += "x | "
+                elif value == 0:
+                    text += "o | "
+                elif value == -1:
+                    text +="  | "
+            text += "\n"
+        return text
 
                     
                         
