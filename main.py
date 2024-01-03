@@ -10,6 +10,7 @@ class Main:
         end = False
         while(not end):
             end = self.doGame()
+            self.gameBoard = Board()
             
             
         
@@ -33,6 +34,7 @@ class Main:
         print("Would you like to play again? (y/n)")
         if(input("> ") != "y"):
             return False
+        
         
     def promptUserInput(self, currentPlayer:int):
         self.displayBoard()
