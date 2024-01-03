@@ -35,7 +35,7 @@ class Board:
             winner = self.checkColumns()
             if winner != -1:
                 return winner
-            # winner = self.checkDiagonals()
+            winner = self.checkDiagonals()
             return winner
 
     def checkRows(self) -> int:
@@ -76,10 +76,11 @@ class Board:
         return winner
 
     def checkValuesForWin(self, values) -> int:
+        winner = -1
         win = not (1 in values and 0 in values) and not None in values
         if win and 1 in values:
             winner = 1
-        else:
+        if win and 0 in values:
             winner = 0
         if not win:
             winner = -1
