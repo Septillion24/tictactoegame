@@ -1,4 +1,5 @@
 using System.Data;
+using System.Security.Cryptography.X509Certificates;
 
 class Board
 {
@@ -45,12 +46,58 @@ class Board
         string outputString = "";
         for (int y = 0; y < 3; y++)
         {
-            outputString+="\n[";
+            outputString += "\n[";
             outputString += string.Join(",", board[y]);
-            outputString+="]";
+            outputString += "]";
         }
-
         return outputString;
     }
+
+    public int checkWinner()
+    {
+        int winner = 0;
+        //0 is no winner
+        // 1 is X
+        // 2 is O
+
+
+
+
+        return winner;
+        int checkDiagonal()
+        {
+            winner = 0;
+            return winner;
+        }
+        int checkHorizontal()
+        {
+            winner = 0;
+            for (int y = 0; y < 3; y++)
+            {
+                int[] row = board[y];
+                bool isFull = !row.Contains(0);
+                if(isFull)
+                {
+                    return 0;
+                }
+                else if(row.Contains(1) && row.Contains(2))
+                {
+                    return 0;
+                }
+                else
+                {
+                    return row[0];
+                }
+            }
+            return winner;
+        }
+        int checkVertical()
+        {
+            winner = 0;
+            return winner;
+        }
+    }
+
+
 
 }
