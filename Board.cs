@@ -60,42 +60,83 @@ class Board
         // 1 is X
         // 2 is O
 
-
-
-
+        for (int i = 0; i < 3; i++)
+        {
+            winner = checkHorizontal(i);
+            if (winner != 0)
+            {
+                return winner;
+            }
+        }
+        for (int i = 0; i < 3; i++)
+        {
+            winner = checkVertical(i);
+            if (winner != 0)
+            {
+                return winner;
+            }
+        }
+        winner = checkDiagonal();
         return winner;
+
         int checkDiagonal()
         {
             winner = 0;
-            return winner;
-        }
-        int checkHorizontal()
-        {
-            winner = 0;
-            for (int y = 0; y < 3; y++)
+            int[] ascendingDiagonal = new int[3];
+            for (int i = 0; i < 3; i++)
             {
-                int[] row = board[y];
-                bool isFull = !row.Contains(0);
-                if(isFull)
-                {
-                    return 0;
-                }
-                else if(row.Contains(1) && row.Contains(2))
-                {
-                    return 0;
-                }
-                else
-                {
-                    return row[0];
-                }
+                ascendingDiagonal[i] = getRowColumn(i, i);
             }
+            winner = getWinnerFromArray(ascendingDiagonal);
+            if (winner != 0)
+            {
+                return winner;
+            }
+            int[] descendingDiagonal = new int[3];
+            for (int i = 0; i < 3; i++)
+            {
+                descendingDiagonal[i] = getRowColumn(i, 2 - i);
+            }
+            winner = getWinnerFromArray(descendingDiagonal);
+
+
             return winner;
         }
-        int checkVertical()
+        int checkHorizontal(int row)
         {
             winner = 0;
+            int[] rowArray = board[row];
+            winner = getWinnerFromArray(rowArray);
+
             return winner;
         }
+        int checkVertical(int column)
+        {
+            winner = 0;
+            int[] columnArray = new int[3];
+            for (int row = 0; row < 3; row++)
+            {
+                columnArray[row] = board[column][row];
+            }
+            winner = getWinnerFromArray(columnArray);
+            return winner;
+        }
+        int getWinnerFromArray(int[] array)
+        {
+            if (array.Contains(0))
+            {
+                return 0;
+            }
+            else if (array.Contains(1) && array.Contains(2))
+            {
+                return 0;
+            }
+            else
+            {
+                return array[0];
+            }
+        }
+
     }
 
 
