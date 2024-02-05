@@ -1,0 +1,15 @@
+C:\Projects\tictactoegame\bin\Debug\net7.0\tictactoegame.exe
+C:\Projects\tictactoegame\bin\Debug\net7.0\tictactoegame.deps.json
+C:\Projects\tictactoegame\bin\Debug\net7.0\tictactoegame.runtimeconfig.json
+C:\Projects\tictactoegame\bin\Debug\net7.0\tictactoegame.dll
+C:\Projects\tictactoegame\bin\Debug\net7.0\tictactoegame.pdb
+C:\Projects\tictactoegame\obj\Debug\net7.0\tictactoegame.csproj.AssemblyReference.cache
+C:\Projects\tictactoegame\obj\Debug\net7.0\tictactoegame.GeneratedMSBuildEditorConfig.editorconfig
+C:\Projects\tictactoegame\obj\Debug\net7.0\tictactoegame.AssemblyInfoInputs.cache
+C:\Projects\tictactoegame\obj\Debug\net7.0\tictactoegame.AssemblyInfo.cs
+C:\Projects\tictactoegame\obj\Debug\net7.0\tictactoegame.csproj.CoreCompileInputs.cache
+C:\Projects\tictactoegame\obj\Debug\net7.0\tictactoegame.dll
+C:\Projects\tictactoegame\obj\Debug\net7.0\refint\tictactoegame.dll
+C:\Projects\tictactoegame\obj\Debug\net7.0\tictactoegame.pdb
+C:\Projects\tictactoegame\obj\Debug\net7.0\tictactoegame.genruntimeconfig.cache
+C:\Projects\tictactoegame\obj\Debug\net7.0\ref\tictactoegame.dll
