@@ -27,28 +27,61 @@ class Program
     {
         int winner;
         //X
-        Console.Write(board + "\nInput move for X: ");
         int x;
         int y;
-        parseUserInput(out x, out y, Console.ReadLine());
-        board.setRowColumns(x, y, 1);
+        Console.WriteLine(board);
+        while (true)
+        {
+            Console.Write("\nInput move for X: ");
+            parseUserInput(out x, out y, Console.ReadLine());
+            if (board.getRowColumn(x, y) == 0)
+            {
+                board.setRowColumns(x, y, 1);
+                break;
+            }
+            else
+            {
+                Console.Write("Space occupied. Try again.");
+            }
+        }
         winner = board.checkWinner();
-        if(winner != 0)
+        if (board.isFull() && winner == 0)
+        {
+            return 3;
+        }
+        if (winner != 0)
         {
             return winner;
         }
 
         //O
-        Console.Write(board + "\nInput move for O: ");
-        parseUserInput(out x, out y, Console.ReadLine());
-        board.setRowColumns(x, y, 2);
+
+        Console.WriteLine(board);
+        while (true)
+        {
+            Console.Write("\nInput move for O: ");
+            parseUserInput(out x, out y, Console.ReadLine());
+            if (board.getRowColumn(x, y) == 0)
+            {
+                board.setRowColumns(x, y, 2);
+                break;
+            }
+            else
+            {
+                Console.Write("Space occupied. Try again.");
+            }
+        }
         winner = board.checkWinner();
+        if (board.isFull() && winner == 0)
+        {
+            return 3;
+        }
         return winner;
     }
 
 
     static Board board;
-    
+
     static void Main()
     {
         board = new Board();
@@ -59,13 +92,17 @@ class Program
             winner = doTurn();
         }
         Console.WriteLine(board);
-        if(winner == 1)
+        if (winner == 1)
         {
             Console.WriteLine("X wins!");
         }
-        else
+        else if (winner == 2)
         {
             Console.WriteLine("O wins!");
+        }
+        else
+        {
+            Console.WriteLine("Draw!");
         }
     }
 }

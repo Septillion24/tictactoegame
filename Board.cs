@@ -139,6 +139,17 @@ class Board
 
     }
 
+    public bool isFull()
+    {
+        for (int row = 0; row < 3; row++)
+        {
+            if(board[row].Contains(0))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
 
 
 }
